@@ -20,6 +20,7 @@ My Local Computer -> Allocate a local port and forward it to a remote address IN
 # Step 3:
 
 My Local Computer -> Open RDP/SSH Session on localhost and allocated local port -> Connection to Remote Desktop/Server Succeeded!
+
 Now, I had a few issues getting this up and going and the major one was making sure that the OpenConnect/AnyConnect Client wasn’t effectively blocking out ssh connections to allow this port forward allocation. However, I DID end up finding a way around this and made sure that the OpenConnect/AnyConnect Client wasn’t hijacking all requests to port 22 and instead was only hijacking/redirecting requests to the VPN. I accomplished this by using a nifty tool called VPN Splice.
 
 You can check out this awesome utility written by Dan Lenski here:
