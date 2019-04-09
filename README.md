@@ -1,7 +1,7 @@
 # Docker VPN Tool
 A tool utilizing Docker that allows you to be able to connected to multiple Cisco AnyConnect/OpenConnect networks at one time
 
-Like many of you, my corporation and many others I work with use Cisco AnyConnect to allow Employees/Contractors onto their Enterprise Networks.
+Like many of you, I use Cisco AnyConnect to connect to Networks.
 
 In my case, I had two separate Cisco AnyConnect networks that I needed to be connected to in order to be connected to a Virtual Desktop/Server through either RDP/SSH on each network.
 
