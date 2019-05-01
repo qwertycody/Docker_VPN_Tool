@@ -51,7 +51,7 @@ do
     ssh -o StrictHostKeyChecking=no -fNL $LOCAL_LISTEN_PORT:$DESTINATION_ADDRESS_DESTINATION_PORT -l root $LOCAL_DOCKER_ADDRESS -p $LOCAL_DOCKER_SSH_PORT
 
     #Windows - Comment Linux Lines Above 
-    #nohup "/c/Program Files/PuTTY/plink.exe" -N -L $LOCAL_LISTEN_PORT:$DESTINATION_ADDRESS_DESTINATION_PORT -ssh root@$LOCAL_DOCKER_ADDRESS -P $LOCAL_DOCKER_SSH_PORT -pw password >/dev/null 2>&1 &
+    #nohup echo y | "/c/Program Files/PuTTY/plink.exe" -N -L $LOCAL_LISTEN_PORT:$DESTINATION_ADDRESS_DESTINATION_PORT -ssh root@$LOCAL_DOCKER_ADDRESS -P $LOCAL_DOCKER_SSH_PORT -pw password >/dev/null 2>&1 &
 
     echo ""
     echo "##################################################################"
