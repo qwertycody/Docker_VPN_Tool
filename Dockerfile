@@ -1,30 +1,22 @@
 FROM debian:latest
 
-RUN apt-get update 
-RUN apt-get install -y openconnect
-RUN apt-get install -y openssh-server 
-RUN apt-get install -y passwd
-RUN apt-get install -y python3
-RUN apt-get install -y python3-pip
-RUN apt-get install -y dnsutils
-RUN apt-get install -y iptables
-RUN apt-get install -y iproute2
-RUN apt-get install -y screen
+USER root
 
-RUN pip3 install https://github.com/dlenski/vpn-slice/archive/master.zip
+COPY vpnBypass.sh /
 
-RUN apt-get clean all
-
-RUN mkdir /var/run/sshd
-
-RUN echo "PasswordAuthentication yes" >> /etc/ssh/ssh_config
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-
-RUN echo 'echo "root:password" | chpasswd' >> /startup.sh
-RUN echo "/usr/sbin/sshd -D &" >> /startup.sh
-RUN echo "ping localhost" >> /startup.sh
+RUN chmod 755 vpnBypass.sh &&\
+    apt-get update &&\
+    apt-get install -y openconnect openssh-server passwd dnsutils iptables iproute2 screen ipcalc &&\
+    apt-get clean all &&\
+    mkdir /var/run/sshd &&\
+    echo "PasswordAuthentication yes" >> /etc/ssh/ssh_config &&\
+    echo "PermitRootLogin yes" >> /etc/ssh/sshd_config &&\
+    echo 'echo "root:password" | chpasswd' >> /startup.sh &&\
+    echo "/usr/sbin/sshd -D &" >> /startup.sh &&\
+    echo "sh /vpnBypass.sh" >> /startup.sh &&\
+    echo "ping localhost" >> /startup.sh &&\
+    chmod 755 /startup.sh
 
 EXPOSE 22
-EXPOSE 3389
 
 CMD sh /startup.sh
