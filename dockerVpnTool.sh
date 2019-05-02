@@ -1,4 +1,5 @@
 OPENCONNECT_VPN_ENDPOINT=$1; shift
+LOCAL_DOCKER_ADDRESS=$1; shift
 LOCAL_DOCKER_SSH_PORT=$1; shift
 CONTAINER_NAME=$1; shift
 IMAGE_NAME=$1; shift
@@ -6,12 +7,12 @@ eval "declare -A DESTINATION_LIST="${1#*=}
 
 function connectToVpn()
 {
-    #docker stop $CONTAINER_NAME
-    #docker rm $CONTAINER_NAME
+    docker stop $CONTAINER_NAME
+    docker rm $CONTAINER_NAME
 
     PORT_SSH="$LOCAL_DOCKER_SSH_PORT:22"
 
-    #docker run -d --privileged --rm --name $CONTAINER_NAME -p $PORT_SSH $IMAGE_NAME
+    docker run -d --privileged --rm --name $CONTAINER_NAME -p $PORT_SSH $IMAGE_NAME
 
     ##################################
     ### VPN Endpoint to Connect To ###
