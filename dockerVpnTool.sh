@@ -2,7 +2,7 @@ OPENCONNECT_VPN_ENDPOINT=$1; shift
 LOCAL_DOCKER_SSH_PORT=$1; shift
 CONTAINER_NAME=$1; shift
 IMAGE_NAME=$1; shift
-DESTINATION_LIST=( "$@" )
+eval "declare -A DESTINATION_LIST="${1#*=}
 
 function connectToVpn()
 {
