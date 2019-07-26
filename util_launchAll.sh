@@ -6,4 +6,4 @@ else
     pkill -f plink
 fi
 
-sh run_website.sh
+find ./private -name "*.sh" -print -type f -exec sh {} \;
